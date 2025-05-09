@@ -1,0 +1,52 @@
+[
+    {
+        "id": 3516355,
+        "name": "Tampico",
+        "state": "",
+        "country": "MX",
+        "coord": {
+            "lon": -97.849998,
+            "lat": 22.216669
+        }
+    },
+    {
+        "id": 3533005,
+        "name": "Altamira",
+        "state": "",
+        "country": "MX",
+        "coord": {
+            "lon": -97.916672,
+            "lat": 22.4
+        }
+    },
+    {
+        "id": 3530594,
+        "name": "Ciudad Madero",
+        "state": "",
+        "country": "MX",
+        "coord": {
+            "lon": -97.833328,
+            "lat": 22.26667
+        }
+    },
+    {
+        "id": 3530597,
+        "name": "Mexico City",
+        "state": "",
+        "country": "MX",
+        "coord": {
+            "lon": -99.127663,
+            "lat": 19.428471
+        }
+    },
+    {
+        "id": 3995465,
+        "name": "Monterrey",
+        "state": "",
+        "country": "MX",
+        "coord": {
+            "lon": -100.316673,
+            "lat": 25.66667
+        }
+    }
+]
