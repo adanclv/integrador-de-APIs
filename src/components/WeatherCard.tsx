@@ -5,9 +5,9 @@ interface Props {
     onClick?: () => void
 }
 
-export const CardWeather: React.FC<Props> = ({ weather, onClick }) => {
+export const WeatherCard: React.FC<Props> = ({ weather, onClick }) => {
     return (
-        <div className="p-4 bg-white rounded-2xl shadow-md w-80">
+        <div className="p-4 bg-white rounded-2xl shadow-md w-80 transform transition duration-300 hover:scale-105">
             <h2 className="text-xl font-bold">{weather.name} {weather.main.temp}°C</h2>
             <p className="text-gray-600">Sensación Térmica: {weather.main.feels_like}°C</p>
             <p className="text-gray-600">Clima: {weather.weather[0].main} - {weather.weather[0].description}</p>

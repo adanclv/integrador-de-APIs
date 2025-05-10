@@ -7,7 +7,6 @@ export const fetchWeather = async ({ id }: { id: CityId}) => {
     if (!id.id) return null;
     try {
         const response = await fetch(WEATHER_ENDPOINT + id.id)
-        console.log(WEATHER_ENDPOINT + id.id)
         const weather: Weather = await response.json()
 
         return weather

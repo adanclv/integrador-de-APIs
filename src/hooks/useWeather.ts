@@ -11,7 +11,6 @@ interface Props {
 
 export default function useWeather(id: CityId): Props {
     const [weather, setWeather] = useState<Weather>(initialWeather)
-    console.log("DEbug" + id)
 
     const getWeather = useCallback(async (id: CityId) => {    
         try {

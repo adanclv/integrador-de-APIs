@@ -1,17 +1,21 @@
 import useCities from "../hooks/useCities";
 import useWeather from "../hooks/useWeather";
-import { CardWeather } from "../components/CardWeather";
+import { WeatherCard } from "../components/WeatherCard";
 import { useEffect } from "react";
+import { NewsCard } from "../components/NewsCard";
+import useNews from "../hooks/useNews";
 
 export const Home: React.FC = () => {
     const cities = useCities();
     const city = cities[0]
     const { weather, getWeather } = useWeather({ id: city.id })
+    const { articles, getNews } = useNews();
 
     useEffect(() => {
         getWeather(city);
-        console.log(city)
-    }, [getWeather, city]);
+        getNews();
+
+    }, []);
 
     return (
         <div className="p-6 space-y-4">
@@ -22,7 +26,8 @@ export const Home: React.FC = () => {
             {weather && <WeatherCard weather={weather} />} */}
 
             <h2>Weather</h2>
-            <CardWeather weather={weather} />
+            <WeatherCard weather={weather} />
+            <NewsCard article={articles[0]}/>
         </div>
     );
 };
