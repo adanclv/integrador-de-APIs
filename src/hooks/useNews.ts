@@ -17,7 +17,6 @@ const useNews = (): Props => {
             if (newArticles) {
                 setArticles(newArticles)
             }
-            console.log(newArticles)
         } catch (e) {
             throw new Error(`Error al buscar: ${e}`)
         }

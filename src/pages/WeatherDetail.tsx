@@ -21,7 +21,6 @@ export const WeatherDetail: React.FC = () => {
 
     const handleOnClick = () => {
         getWeather(selectedCity)
-        console.log(selectedCity)
     }
 
     const formatDate = (timestamp: number) => {

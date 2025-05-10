@@ -16,7 +16,6 @@ export const NewsCard: React.FC<Props> = ({ article }) => {
             minute: "2-digit",
         })
     };
-    console.log("Newscard: " + article)
 
     return (
         <div className="max-w-md bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105">

@@ -1,0 +1,13 @@
+{
+    "Realtime Currency Exchange Rate": {
+        "1. From_Currency Code": "USD",
+        "2. From_Currency Name": "United States Dollar",
+        "3. To_Currency Code": "MXN",
+        "4. To_Currency Name": "Mexican Peso",
+        "5. Exchange Rate": "19.43100000",
+        "6. Last Refreshed": "2025-05-10 17:49:32",
+        "7. Time Zone": "UTC",
+        "8. Bid Price": "19.43070000",
+        "9. Ask Price": "19.43150000"
+    }
+}

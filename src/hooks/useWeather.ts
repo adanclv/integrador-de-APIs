@@ -18,7 +18,6 @@ export default function useWeather(id: CityId): Props {
             if (newWeather) {
                 setWeather(newWeather)
             }
-            console.log(newWeather)
         } catch (e) {
             throw new Error(`Error al buscar: ${e}`)
         }

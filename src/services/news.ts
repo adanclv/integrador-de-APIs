@@ -9,7 +9,6 @@ interface Search {
 
 export const fetchNews = async ({ q }: Search) => {
     const endpoint = q ? ENDPOINT_NEWS_EVERYTHING + q : ENDPOINT_NEWS_TOP_HEADLINES;
-    console.log(endpoint)
     try {
         const response = await fetch(endpoint);
         const data = await response.json();
