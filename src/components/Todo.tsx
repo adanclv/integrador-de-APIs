@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { type TodoEdite, type TodoId, type TodoToggleComplete, type Todo as TodoType } from "../types/todo"
+import { type TodoId, type Todo as TodoType } from "../types/todo"
 
 interface Props extends TodoType {
-    onCompletedTodo: ({ id, completed }: TodoToggleComplete) => void,
+    onCompletedTodo: ({ id, title, completed }: TodoType) => void,
     onRemoveTodo: ({ id }: TodoId) => void
-    onEditingTodo: ({id, title}: TodoEdite) => void
+    onEditingTodo: ({id, title, completed}: TodoType) => void
 }
 
 export const Todo: React.FC<Props> = ({ id, title, completed, onCompletedTodo, onRemoveTodo, onEditingTodo }) => {
@@ -12,7 +12,7 @@ export const Todo: React.FC<Props> = ({ id, title, completed, onCompletedTodo, o
     const [editedTitle, setEditedTitle] = useState(title)
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onCompletedTodo({
-            id, completed: event.target.checked
+            id, title, completed: event.target.checked
         })
     }
 
@@ -26,13 +26,13 @@ export const Todo: React.FC<Props> = ({ id, title, completed, onCompletedTodo, o
     }
 
     const handleOnBlur = ():void => {
-        onEditingTodo({id, title: editedTitle})
+        onEditingTodo({id, title: editedTitle, completed})
         setIsEditing(false)
     }
 
     const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
-        onEditingTodo({id, title: editedTitle})
+        onEditingTodo({id, title: editedTitle, completed})
         setIsEditing(false)
     }
 

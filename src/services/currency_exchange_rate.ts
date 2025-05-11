@@ -5,9 +5,9 @@ const ENDPOINT_CURRENCY_EXCHANGE_RATE = (from: string, to: string) => `https://w
 
 export const fetchCurrency = async (from: string, to: string) => {
   try {
-    // const response = await fetch(ENDPOINT_CURRENCY_EXCHANGE_RATE(from, to));
-    // const result = await response.json();
-    const result = exchange; // Mocked response for testing
+    const response = await fetch(ENDPOINT_CURRENCY_EXCHANGE_RATE(from, to));
+    const result = await response.json();
+    // const result = exchange; // Mocked response for testing
     const data = result["Realtime Currency Exchange Rate"];
 
     if (!data) {

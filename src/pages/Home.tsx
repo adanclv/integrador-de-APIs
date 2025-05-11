@@ -4,8 +4,8 @@ import { WeatherCard } from "../components/WeatherCard";
 import { useEffect } from "react";
 import { NewsCard } from "../components/NewsCard";
 import useNews from "../hooks/useNews";
-import usePopulation from "../hooks/usePopulation";
-import { PopulationChart } from "../components/PopulationChart";
+// import usePopulation from "../hooks/usePopulation";
+// import { PopulationChart } from "../components/PopulationChart";
 import { ExchangeRateCard } from "../components/ExchangeRateCard";
 import useCurrency from "../hooks/useCurrency";
 import { Link } from 'react-router-dom';
@@ -25,14 +25,14 @@ export const Home: React.FC = () => {
     const toCurrency = { code: "MXN", name: "Mexican Peso" } as Physical_Currency;
     const { weather, getWeather } = useWeather({ id: city.id })
     const { articles, getNews } = useNews();
-    const { data, getPopulationData } = usePopulation();
+    // const { data, getPopulationData } = usePopulation();
     const { exchange_data, getCurrency } = useCurrency();
 
 
     useEffect(() => {
         getWeather(city);
         getNews();
-        getPopulationData(city.country);
+        // getPopulationData(city.country);
         getCurrency(fromCurrency.code, toCurrency.code);
     }, []);
 

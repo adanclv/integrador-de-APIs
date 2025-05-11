@@ -1,11 +1,11 @@
-import { type TodoEdite, type TodoId, type ListOfTodos, type TodoToggleComplete } from "../types/todo"
+import { type TodoId, type ListOfTodos, type Todo as TodoType} from "../types/todo"
 import { Todo } from "./Todo"
 
 interface Props  {
     todos: ListOfTodos,
-    onCompletedTodo: ({ id, completed }: TodoToggleComplete) => void,
+    onCompletedTodo: ({ id, title, completed }: TodoType) => void,
     onRemoveTodo: ({id}: TodoId) => void,
-    onEditingTodo: ({id, title}: TodoEdite) => void
+    onEditingTodo: ({id, title, completed}: TodoType) => void
 }
 
 export const Todos: React.FC<Props> = ({ todos, onCompletedTodo, onRemoveTodo, onEditingTodo }) => {

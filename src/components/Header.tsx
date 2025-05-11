@@ -9,6 +9,7 @@ export const Header: React.FC = () => {
                 <Link to="/news" className="text-blue-600 hover:text-blue-800 font-medium transition">Noticias</Link>
                 <Link to="/pop" className="text-blue-600 hover:text-blue-800 font-medium transition">Población</Link>
                 <Link to="/currency" className="text-blue-600 hover:text-blue-800 font-medium transition">Divisas</Link>
+                <Link to="/todo" className="text-blue-600 hover:text-blue-800 font-medium transition">To-Do</Link>
             </nav>
         </header>
     );

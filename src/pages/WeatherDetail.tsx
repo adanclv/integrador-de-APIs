@@ -83,12 +83,6 @@ export const WeatherDetail: React.FC = () => {
                             Buscar
                         </button>
                     </div>
-
-                    {/* {loading ? (
-                        <p className="text-center text-gray-600 animate-pulse">Cargando clima...</p>
-                    ) : error ? (
-                        <p className="text-center text-red-600 text-sm">No se encontraron datos. Intenta con otra ciudad.</p>
-                    ) : data && data.weather ? ( */}
                     <div className="text-center space-y-4">
                         <h2 className="text-3xl font-bold text-blue-800">{weather.name}</h2>
                         <img
@@ -126,7 +120,6 @@ export const WeatherDetail: React.FC = () => {
                             Última actualización: {weather ? formatDate(weather.dt) : "N/A"}
                         </p>
                     </div>
-                    {/* ) : null} */}
                 </div>
             </div>
         </>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import usePopulation from "../hooks/usePopulation";
 import { PopulationChart } from "../components/PopulationChart";
+import { Header } from "../components/Header";
 
 const Population: React.FC = () => {
   const [countryCode, setCountryCode] = useState<string>("AFE");
@@ -16,6 +17,8 @@ const Population: React.FC = () => {
   };
 
   return (
+    <>
+    <Header />
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Población Mundial</h1>
 
@@ -38,6 +41,7 @@ const Population: React.FC = () => {
       {error && <p className="text-red-500">{error}</p>}
       {!loading && !error && data.length > 0 && <PopulationChart data={data} />}
     </div>
+    </>
   );
 };
 
