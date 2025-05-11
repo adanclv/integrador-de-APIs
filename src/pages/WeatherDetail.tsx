@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import useWeather from "../hooks/useWeather";
 import useCities from "../hooks/useCities";
 import { type City } from "../types/city";
+import { Header } from "../components/Header";
+import { WiDaySunny, WiHumidity, WiStrongWind, WiThermometerExterior, WiThermometer, WiHorizonAlt, WiCloud } from 'react-icons/wi';
+import { FaSearch } from 'react-icons/fa';
 
 export const WeatherDetail: React.FC = () => {
     const cities = useCities();
     const city = cities[0]
     const [selectedCity, setSelectedCity] = useState<City>(city)
     const { weather, getWeather } = useWeather({ id: selectedCity.id })
-    
+    const [darkMode, setDarkMode] = useState(false);
+
     useEffect(() => {
         getWeather(selectedCity);
     }, []);
@@ -36,97 +40,95 @@ export const WeatherDetail: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white p-6">
-            {/* Header con título y selector de ciudad */}
-            <header className="flex justify-between items-center mb-6">
-                <h1 className="text-4xl font-bold">Clima Actual</h1>
-                <div className="flex items-center space-x-4">
-                    <select
-                        value={selectedCity.id}
-                        onChange={handleCityChange}
-                        className="p-2 bg-white text-black rounded-md"
-                    >
-                        {cities.map((city) => (
-                            <option key={city.id} value={city.id}>
-                                {city.name}
-                            </option>
-                        ))}
-                    </select>
+        <>
+            <Header />
+            <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-gradient-to-br from-blue-100 to-blue-300 text-gray-800'} p-6 flex flex-col items-center`}>
+
+                <header className="flex justify-between items-center bg-white/80 backdrop-blur-md border border-blue-200 rounded-xl px-6 py-4 shadow-md mb-8 w-full max-w-2xl">
+                    <div className="flex items-center gap-3 text-blue-700 font-bold text-xl">
+                        <WiDaySunny className="text-yellow-400 text-3xl" />
+                        Weather App
+                    </div>
                     <button
-                        onClick={handleOnClick}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        onClick={() => setDarkMode(!darkMode)}
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm"
                     >
-                        Consultar
+                        {darkMode ? '☀️ Modo Claro' : '🌙 Modo Oscuro'}
                     </button>
-                </div>
-            </header>
+                </header>
 
-            {/* Información del clima */}
-            <div className="bg-slate-400 bg-opacity-20 rounded-lg shadow-md p-8">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                        {weather?.weather[0].icon && (
-                            <img
-                                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-                                alt={weather?.weather[0].description}
-                                className="w-20 h-20"
-                            />
-                        )}
-                        <div>
-                            <p className="text-7xl font-bold">{weather?.main.temp}°</p>
-                            <p className="text-lg">{weather?.weather[0].description}</p>
-                        </div>
-                    </div>
-                    <div className="text-right">
-                        <p className="text-2xl font-semibold">Sensación Termica: {weather?.main.feels_like}°</p>
-                        <p className="text-lg">Humedad: {weather?.main.humidity}%</p>
-                    </div>
-                </div>
+                <div className="w-full max-w-2xl bg-white/80 backdrop-blur-md border border-blue-200 rounded-3xl shadow-xl p-8 space-y-6">
+                    <h1 className="text-3xl font-bold text-blue-700 flex items-center gap-3 justify-center">
+                        <WiDaySunny className="text-yellow-400" /> Clima en tiempo real
+                    </h1>
 
-                {/* Información dividida en dos columnas */}
-                <div className="grid grid-cols-2 gap-6 mt-6">
-                    <div className="space-y-2">
-                        <div className="flex justify-between border-b pb-1">
-                            <span>🌬️ Viento</span>
-                            <span>{weather?.wind.speed} km/h - {weather?.wind.deg}°</span>
-                        </div>
-                        <div className="flex justify-between border-b pb-1">
-                            <span>⬇️ Temperatura minima</span>
-                            <span>{weather?.main.temp_min}°C</span>
-                        </div>
-                        <div className="flex justify-between border-b pb-1">
-                            <span>⬆️ Temperatura maxima</span>
-                            <span>{weather?.main.temp_max}°C</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>☁️ Nubosidad</span>
-                            <span>{weather?.clouds.all}%</span>
-                        </div>
+
+                    <div className="flex items-center bg-slate-100 rounded-xl px-4 py-2 shadow-inner border gap-2">
+                        <FaSearch className="text-gray-500" />
+                        <select
+                            value={selectedCity.id}
+                            onChange={handleCityChange}
+                            className="p-2 bg-transparent text-black rounded-md w-full"
+                        >
+                            {cities.map((city) => (
+                                <option key={city.id} value={city.id}>
+                                    {city.name}
+                                </option>
+                            ))}
+                        </select>
+                        <button
+                            onClick={handleOnClick}
+                            className="bg-blue-500 text-white text-sm px-4 py-1 rounded-full hover:bg-blue-600 transition duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        >
+                            Buscar
+                        </button>
                     </div>
 
-                    <div className="space-y-2">
-                        {/* <div className="flex justify-between border-b pb-1">
-                            <span>💨 Ráfagas</span>
-                            <span>{weather?.wind.gust ?? "N/A"} km/h</span>
-                        </div> */}
-                        <div className="flex justify-between border-b pb-1">
-                            <span>💦 Humedad</span>
-                            <span>{weather?.main.humidity}%</span>
+                    {/* {loading ? (
+                        <p className="text-center text-gray-600 animate-pulse">Cargando clima...</p>
+                    ) : error ? (
+                        <p className="text-center text-red-600 text-sm">No se encontraron datos. Intenta con otra ciudad.</p>
+                    ) : data && data.weather ? ( */}
+                    <div className="text-center space-y-4">
+                        <h2 className="text-3xl font-bold text-blue-800">{weather.name}</h2>
+                        <img
+                            src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+                            alt={weather?.weather[0].description}
+                            className="mx-auto drop-shadow-md"
+                        />
+                        <p className="text-lg capitalize text-gray-700">{weather.weather[0].description}</p>
+                        <p className="text-5xl font-extrabold text-blue-900">{Math.round(weather.main.temp)}°C</p>
+                        <div className="flex justify-around pt-4 text-sm text-gray-600">
+                            <div className="flex items-center gap-2">
+                                <WiHumidity className="text-xl" /> {weather.main.humidity}% Hum.
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <WiStrongWind className="text-xl" /> {weather.wind.speed} m/s Viento
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <WiThermometerExterior className="text-xl" /> {weather.main.temp_min}°C
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <WiThermometer className="text-xl" /> {weather.main.temp_max}°C
+                            </div>
                         </div>
-                        <div className="flex justify-between border-b pb-1">
-                            <span>🌫️ Visibilidad</span>
-                            <span>{(weather?.visibility / 1000).toFixed(1)} km</span>
+
+                        <div className="flex justify-around pt-4 text-sm text-gray-600">
+                            <div className="flex items-center gap-2">
+                                <WiHorizonAlt className="text-xl" /> {(weather?.visibility / 1000).toFixed(1)} km Visibilidad
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <WiCloud className="text-xl" /> {weather?.clouds.all}% Nubosidad
+                            </div>
                         </div>
-                        <div className="flex justify-between">
-                            <span>☁️ Techo de nubes</span>
-                            <span>{weather?.main.grnd_level ?? "N/A"} m</span>
-                        </div>
+
+                        <p className="text-sm text-gray-300 mt-4">
+                            Última actualización: {weather ? formatDate(weather.dt) : "N/A"}
+                        </p>
                     </div>
+                    {/* ) : null} */}
                 </div>
-                <p className="text-sm text-gray-300 mt-4">
-                    Última actualización: {weather ? formatDate(weather.dt) : "N/A"}
-                </p>
             </div>
-        </div>
+        </>
     );
 }
